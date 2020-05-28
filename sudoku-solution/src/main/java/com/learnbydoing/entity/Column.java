@@ -1,5 +1,8 @@
 package com.learnbydoing.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Column implements GameShape {
 	
 	private int [] values;
@@ -20,4 +23,28 @@ public class Column implements GameShape {
 		return this.values[i];
 	}
 
+	@Override
+	public boolean isInvalid() {
+		
+		Set <Integer> uniqueValues = new HashSet<>();
+		for (int v : values) {
+			if (v != 0) { 
+				if(!uniqueValues.contains(Integer.valueOf(v))) {
+					uniqueValues.add(v);
+				} else {
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+	
+	public int[] getValues() {
+		return values;
+	}
+
+	public void setValues(int[] values) {
+		this.values = values;
+	}
 }

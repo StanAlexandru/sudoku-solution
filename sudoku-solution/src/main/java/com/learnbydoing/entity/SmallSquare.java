@@ -1,5 +1,8 @@
 package com.learnbydoing.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class SmallSquare implements GameShape {
 	
 	private int [][] values;
@@ -20,7 +23,7 @@ public class SmallSquare implements GameShape {
 		int line = getLine(i);
 		int column = getColumn(j);
 		
-		values[line][column] = value;
+		this.values[line][column] = value;
 	}
 	
 	@Override
@@ -34,6 +37,26 @@ public class SmallSquare implements GameShape {
 		
 		return this.values[line][column];
 	}
+	
+	@Override
+	public boolean isInvalid() {
+		
+		Set <Integer> uniqueValues = new HashSet<>();
+		for (int i = 0; i < this.values.length; i++) {
+			for (int j = 0; j < this.values.length; j++) {
+				int value = this.values[i][j];
+				if (value != 0) { 
+					if(!uniqueValues.contains(Integer.valueOf(value))) {
+						uniqueValues.add(value);
+					} else {
+						return true;
+					}
+				}
+			}
+		}
+		
+		return false;
+	}
 
 	private int getLine(int i) {
 		return i % 3;
@@ -41,6 +64,14 @@ public class SmallSquare implements GameShape {
 	
 	private int getColumn(int j) {
 		return j % 3;
+	}
+	
+	public int[][] getValues() {
+		return values;
+	}
+	
+	public void setValues(int[][] values) {
+		this.values = values;
 	}
 
 }

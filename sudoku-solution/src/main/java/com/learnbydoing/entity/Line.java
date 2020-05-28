@@ -1,5 +1,9 @@
 package com.learnbydoing.entity;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Line implements GameShape{
 	
 	private int [] values;
@@ -41,6 +45,23 @@ public class Line implements GameShape{
 		}
 		result.append("|").append("\n");
 		return result.toString();
+	}
+	
+	@Override
+	public boolean isInvalid() {
+		
+		Set <Integer> uniqueValues = new HashSet<>();
+		for (int v : this.values) {
+			if (v != 0) { 
+				if(!uniqueValues.contains(Integer.valueOf(v))) {
+					uniqueValues.add(v);
+				} else {
+					return true;
+				}
+			}
+		}
+		
+		return false;
 	}
 
 }

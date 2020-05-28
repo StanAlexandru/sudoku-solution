@@ -6,4 +6,6 @@ public interface GameShape {
 
 	int getValue(int... indexes);
 
+	boolean isInvalid();
+
 }

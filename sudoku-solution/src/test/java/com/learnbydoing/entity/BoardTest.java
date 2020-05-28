@@ -6,7 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TestBoard {
+public class BoardTest {
 	
 	Board board;
 	
@@ -46,5 +46,10 @@ public class TestBoard {
 		board.setValue(3, 8, 0); board.setValue(9, 8, 3); board.setValue(2, 8, 5); board.setValue(5, 8, 8);
 		
 		System.out.println(board);
+	}
+	
+	@Test(expected = IndexOutOfBoundsException.class)
+	public void testGetSmallSquareIndexForWrongValues() {
+		assertEquals(0, board.getValue(new int [] {9, 9}));
 	}
 }
